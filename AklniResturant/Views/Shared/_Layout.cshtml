@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AklniResturant</title>
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AklniResturant.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark aklni-navbar shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-3" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/assets/images/logo.jpg" alt="Aklni Logo" width="40" height="40" class="me-2 rounded-circle">
+                    <span class="text-gradient">Aklni</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" asp-area="" asp-controller="About" asp-action="Index">About Us</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="aklni-footer text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row gy-4">
+                <!-- Brand / About -->
+                <div class="col-md-4">
+                    <h4 class="fw-bold text-gradient mb-3">Aklni Restaurant</h4>
+                    <p class="text-white-50">
+                        Serving the heart of Egypt on every plate. Experience traditional recipes,
+                        modern flavors, and authentic hospitality — all in one place.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5 class="fw-semibold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a asp-controller="Home" asp-action="Index" class="footer-link">Home</a></li>
+                        <li><a asp-controller="Menu" asp-action="Index" class="footer-link">Menu</a></li>
+                        <li><a asp-controller="Reservation" asp-action="Index" class="footer-link">Reservations</a></li>
+                        <li><a asp-controller="About" asp-action="Index" class="footer-link">About Us</a></li>
+                        <li><a asp-controller="Contact" asp-action="Index" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4">
+                    <h5 class="fw-semibold mb-3">Contact Us</h5>
+                    <ul class="list-unstyled text-white-50 mb-3">
+                        <li><i class="bi bi-geo-alt-fill me-2"></i> Cairo, Egypt</li>
+                        <li><i class="bi bi-telephone-fill me-2"></i> +20 100 555 7777</li>
+                        <li><i class="bi bi-envelope-fill me-2"></i> info@aklni.com</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mt-5 mb-3 text-white-50">
+
+            <div class="text-center text-white-50 small">
+                &copy; @DateTime.Now.Year Aklni Restaurant — All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

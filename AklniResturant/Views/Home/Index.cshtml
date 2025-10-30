@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section -->
+<section class="hero d-flex align-items-center text-center text-white">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Welcome to <span class="text-gradient">Aklni Restaurant</span></h1>
+        <p class="lead mb-4">Taste the authentic flavors of Egypt — fresh, traditional, and unforgettable.</p>
+        <a href="/Menu" class="btn btn-warning btn-lg shadow">Explore Menu</a>
+        <a href="/Reservation" class="btn btn-outline-light btn-lg ms-3">Book a Table</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5 bg-light" id="about">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4 text-gradient">About Us</h2>
+        <p class="lead text-muted mb-4 px-3 px-md-5">
+            At <strong>Aklni</strong>, we bring the warmth of Egyptian hospitality to your plate.
+            From the streets of Cairo to your table, enjoy hand-crafted dishes made with love and the finest ingredients.
+        </p>
+
+        <div class="about-image-wrapper mx-auto">
+            <img src="~/assets/images/bg.jpg"
+                 class="img-fluid rounded shadow about-image"
+                 alt="Egyptian Dish">
+        </div>
+    </div>
+</section>
+
+
+<!-- Featured Dishes -->
+<section class="py-5" id="featured">
+    <div class="container">
+        <h2 class="fw-bold text-center mb-5 text-gradient">Our Popular Dishes</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow border-0 h-100">
+                    <img src="~/assets/images/koshari.png" class="card-img-top" alt="Koshari">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Koshari</h5>
+                        <p class="card-text text-muted">Egypt’s national dish — a hearty mix of rice, pasta, lentils, and spicy tomato sauce.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow border-0 h-100">
+                    <img src="~/assets/images/molokhia.jpg" class="card-img-top" alt="Molokhia">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Molokhia</h5>
+                        <p class="card-text text-muted">A silky green soup made from jute leaves, served with rice and chicken or beef.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow border-0 h-100">
+                    <img src="~/assets/images/hwawshi.png" class="card-img-top" alt="Hawawshi">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Hawawshi</h5>
+                        <p class="card-text text-muted">Crispy pita stuffed with spiced minced meat — a true Egyptian street food favorite.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 text-center cta-section text-white">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Ready to Taste Egypt?</h2>
+        <p class="mb-4 lead">Book your table or order online and enjoy the authentic flavors of Aklni Restaurant.</p>
+        <a href="/Reservation" class="btn btn-light btn-lg me-3">Reserve Now</a>
+        <a href="/Menu" class="btn btn-outline-light btn-lg">View Menu</a>
+    </div>
+</section>

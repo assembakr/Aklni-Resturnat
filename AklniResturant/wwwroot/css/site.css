@@ -1,0 +1,125 @@
+/* Normalization */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Global */
+:root {
+    --aklni-primary: #d35400; 
+    --aklni-secondary: #b03a2e; 
+    --aklni-light: #fff3e0; 
+}
+
+
+.btn-theme {
+    background: linear-gradient(45deg, var(--aklni-primary), var(--aklni-secondary));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-theme:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4);
+    }
+
+.btn-theme-outline {
+    background-color: transparent;
+    border: 2px solid var(--aklni-primary);
+    color: var(--aklni-primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-theme-outline:hover {
+        background: var(--aklni-primary);
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(211, 84, 0, 0.4);
+    }
+
+.btn-theme-secondary {
+    background: var(--aklni-secondary);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-theme-secondary:hover {
+        background: #922b21;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(176, 58, 46, 0.4);
+    }
+
+.text-gradient {
+    background: linear-gradient(45deg, var(--aklni-primary), var(--aklni-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* === Aklni Restaurant Theme Colors === */
+:root {
+    --aklni-primary: #d35400; /* Warm Egyptian orange */
+    --aklni-secondary: #b03a2e; /* Deep red accent */
+    --aklni-bg: #fffaf3; /* Light warm background */
+}
+
+/* === Gradient Text === */
+.text-gradient {
+    background: linear-gradient(45deg, var(--aklni-primary), var(--aklni-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* === Themed Button === */
+.btn-theme {
+    background: linear-gradient(45deg, var(--aklni-primary), var(--aklni-secondary));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-theme:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4);
+    }
+
+/* === Page Background & Card === */
+.login-section {
+    background: linear-gradient(120deg, #fff8f0, #ffe9d6);
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+}
+

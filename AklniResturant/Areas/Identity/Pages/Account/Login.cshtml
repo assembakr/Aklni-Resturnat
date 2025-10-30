@@ -1,0 +1,50 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<section class="login-section d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 420px; width: 100%;">
+        <div class="text-center mb-4">
+            <img src="~/assets/images/logo.jpg" alt="Aklni Logo" style="width: 70px;" class="mb-2">
+            <h2 class="fw-bold text-gradient">Welcome Back!</h2>
+            <p class="text-muted small">Log in to enjoy Aklni’s delicious Egyptian dishes 🍲</p>
+        </div>
+
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control rounded-pill" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger small"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control rounded-pill" autocomplete="current-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger small"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="Input.RememberMe" />
+                <label class="form-check-label small" asp-for="Input.RememberMe"></label>
+            </div>
+
+            <button id="login-submit" type="submit" class="btn btn-theme w-100 rounded-pill py-2 mb-3">
+                Log in
+            </button>
+
+            <div class="text-center">
+                <a id="forgot-password" asp-page="./ForgotPassword" class="small text-muted text-decoration-none d-block mb-1">Forgot your password?</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="small text-gradient text-decoration-none d-block mb-1">Register as a new user</a>
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="small text-muted text-decoration-none">Resend email confirmation</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
