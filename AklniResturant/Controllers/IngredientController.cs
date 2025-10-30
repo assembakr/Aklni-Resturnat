@@ -13,9 +13,45 @@ namespace AklniResturant.Controllers
         {
             _ingredients = new Repository<Ingredient>(cont);
         }
+
+        // index view to show all the ingredients
         public async Task<IActionResult> Index()
         {
             return View(await _ingredients.GetAllAsync());
+        }
+
+        // details view to display the ingredient details
+        public async Task<IActionResult> Details(int id)
+        {
+            var query = new Query<Ingredient>() { Includes = "ProdIngredients.Product"};
+            var ingred = await _ingredients.GetByIdAsync(id, query);
+
+            if (ingred == null)
+            {
+                return NotFound();
+            }
+            return View(ingred);
+        }
+
+
+        // create view to add ingredient
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("IngredientId,Name")] Ingredient i)
+        {
+            if (ModelState.IsValid)
+            {
+                await _ingredients.AddAsync(i);
+                await _ingredients.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(i);
         }
     }
 }

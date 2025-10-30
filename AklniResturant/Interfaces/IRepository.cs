@@ -11,5 +11,7 @@ namespace AklniResturant.Interfaces
         public Task UpdateAsync(T entity);
         public Task DeleteAsync(int id);
 
+        public Task SaveChangesAsync();
+
     }
 }

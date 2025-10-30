@@ -49,20 +49,22 @@ namespace AklniResturant.Repos
         public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(T entity)
         {
              _dbContext.Update(entity);
-            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
            T entity = await _dbSet.FindAsync(id);
             _dbSet.Remove(entity);
-            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            _dbContext.SaveChanges();
         }
     }
 }

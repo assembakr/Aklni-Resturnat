@@ -1,0 +1,52 @@
+﻿@model Ingredient
+@{
+    ViewData["Title"] = "Ingredient Details";
+}
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="card shadow-sm border-0 rounded-4 p-4 mx-auto" style="max-width: 700px;">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-basket2 text-theme" style="font-size: 3rem;"></i>
+                </div>
+                <h2 class="fw-bold text-gradient mb-3">@Model.Name</h2>
+
+                <hr />
+
+                <h5 class="fw-semibold text-theme mb-3">Used In These Products:</h5>
+
+                @if (Model.ProdIngredients == null || !Model.ProdIngredients.Any())
+                {
+                    <div class="alert alert-info">
+                        This ingredient is not used in any products yet.
+                    </div>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush text-start">
+                        @foreach (var pi in Model.ProdIngredients)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>@pi.Product.Name</span>
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@pi.Product.ProductId"
+                                   class="btn btn-sm btn-outline-primary rounded-pill">
+                                    <i class="bi bi-eye me-1"></i> View
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+
+                <div class="mt-4">
+                    <a asp-action="Index" class="btn btn-theme rounded-pill px-4">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Back to Ingredients
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

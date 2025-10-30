@@ -57,7 +57,7 @@
     -webkit-text-fill-color: transparent;
 }
 
-/*  Featured Cards  */
+
 .card img {
     height: 250px;
     object-fit: cover;
@@ -65,18 +65,17 @@
     border-top-right-radius: 10px;
 }
 
-/*  CTA Section  */
+
 .cta-section {
     background: linear-gradient(90deg, #b45309, #92400e, #78350f);
     padding: 80px 0;
 }
 
-/*   Hover Effect  */
+
 .card:hover {
     transform: translateY(-5px);
     transition: all 0.3s ease;
 }
-
 /* ---- Home End ---- */
 
 /* --- About Start --- */
@@ -93,12 +92,11 @@
     transition: transform 0.3s ease;
 }
 
-    /* Subtle hover animation (optional) */
+   
     .about-image:hover {
         transform: scale(1.02);
     }
 
-/* --- Mobile Optimization --- */
 @media (max-width: 768px) {
     #about {
         text-align: center;
@@ -143,7 +141,7 @@
             color: #fcd34d;
         }
 
-    /* Social Icons */
+
     .aklni-footer .social-icons a {
         color: #fff;
         font-size: 1.3rem;
@@ -155,26 +153,38 @@
             transform: translateY(-2px);
         }
 
-    /* Divider */
+    
     .aklni-footer hr {
         border-color: rgba(255, 255, 255, 0.15);
     }
-
 /* Footer End */
-/*
+
+/* Ingredient Index */
 .text-gradient {
-    background: white;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.navbar .btn {
+.btn-theme {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
     transition: all 0.3s ease;
 }
 
-    .navbar .btn:hover {
-        transform: scale(1.05);
-    }*/
+    .btn-theme:hover {
+        opacity: 0.9;
+        color: white;
+    }
+
+.text-theme {
+    color: #ff7e5f;
+}
+.form-control:focus {
+    border-color: #ff7e5f;
+    box-shadow: 0 0 0 0.25rem rgba(255, 126, 95, 0.25);
+}
 
 
 
