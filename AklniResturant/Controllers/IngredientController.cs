@@ -53,5 +53,33 @@ namespace AklniResturant.Controllers
             }
             return View(i);
         }
+
+
+        // delete view to delete an ingredient
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var query = new Query<Ingredient>() { Includes = "ProdIngredients.Product" };
+            var ingred = await _ingredients.GetByIdAsync(id, query);
+
+            if (ingred == null)
+            {
+                return NotFound();
+            }
+            return View(ingred);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Ingredient i)
+        {
+            await _ingredients.DeleteAsync(i.IngredientId);
+
+            if (i == null)
+            {
+                return NotFound();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
