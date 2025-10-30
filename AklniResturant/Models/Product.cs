@@ -1,4 +1,7 @@
-﻿namespace AklniResturant.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AklniResturant.Models
 {
     public class Product
     {
@@ -12,9 +15,18 @@
 
         public int Stock { get; set; }
         public int CategoryId { get; set; }
+
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
+
+        public string ImageUrl { get; set; } = string.Empty;
+
+        [ValidateNever]
         public Category? Category { get; set; }
+        [ValidateNever]
 
         public ICollection<OrderItem>? OrderItems { get; set; }
+        [ValidateNever]
 
         public ICollection<ProductIngredient>? ProdIngredients { get; set; }
 
