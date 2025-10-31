@@ -1,4 +1,5 @@
 ﻿using AklniResturant.Data;
+using AklniResturant.Interfaces;
 using AklniResturant.Models;
 using AklniResturant.Repos;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +9,11 @@ namespace AklniResturant.Controllers
 {
     public class IngredientController : Controller
     {
-        private Repository<Ingredient> _ingredients;
+        private IRepository<Ingredient> _ingredients;
 
-        public IngredientController(ApplicationDbContext cont)
+        public IngredientController(IRepository<Ingredient> _ingredients)
         {
-            _ingredients = new Repository<Ingredient>(cont);
+            this._ingredients = _ingredients;
         }
 
         // index view to show all the ingredients
