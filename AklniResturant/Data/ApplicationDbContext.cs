@@ -17,12 +17,15 @@ namespace AklniResturant.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<ProductIngredient> ProdIngredients { get; set; }
+        public DbSet<UserCart> UserCarts { get; set; }
+        public DbSet<UserCartItem> UserCartItems { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<ProductIngredient>()
-                .HasKey(pi => new { pi.ProductId, pi.IngredientId });
+            //builder.Entity<ProductIngredient>()
+            //    .HasKey(pi => new { pi.ProductId, pi.IngredientId });
 
             builder.Entity<ProductIngredient>()
                 .HasOne(pi => pi.Product)
@@ -128,142 +131,143 @@ namespace AklniResturant.Data
             );
 
             builder.Entity<ProductIngredient>().HasData(
-    // 🥘 Egyptian Dishes
-    new ProductIngredient { ProductId = 1, IngredientId = 1 }, // Rice
-    new ProductIngredient { ProductId = 1, IngredientId = 2 }, // Lentils
-    new ProductIngredient { ProductId = 1, IngredientId = 3 }, // Pasta
-    new ProductIngredient { ProductId = 1, IngredientId = 4 }, // Tomato Sauce
-    new ProductIngredient { ProductId = 1, IngredientId = 5 }, // Fried Onions
-    new ProductIngredient { ProductId = 1, IngredientId = 8 }, // Cumin
+     // 🥘 Egyptian Dishes
+     new ProductIngredient { ProductIngredientId = 1, ProductId = 1, IngredientId = 1 }, // Rice
+     new ProductIngredient { ProductIngredientId = 2, ProductId = 1, IngredientId = 2 }, // Lentils
+     new ProductIngredient { ProductIngredientId = 3, ProductId = 1, IngredientId = 3 }, // Pasta
+     new ProductIngredient { ProductIngredientId = 4, ProductId = 1, IngredientId = 4 }, // Tomato Sauce
+     new ProductIngredient { ProductIngredientId = 5, ProductId = 1, IngredientId = 5 }, // Fried Onions
+     new ProductIngredient { ProductIngredientId = 6, ProductId = 1, IngredientId = 8 }, // Cumin
 
-    new ProductIngredient { ProductId = 2, IngredientId = 14 }, // Molokhia Leaves
-    new ProductIngredient { ProductId = 2, IngredientId = 11 }, // Chicken
-    new ProductIngredient { ProductId = 2, IngredientId = 1 }, // Rice
-    new ProductIngredient { ProductId = 2, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 2, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 7, ProductId = 2, IngredientId = 14 }, // Molokhia Leaves
+     new ProductIngredient { ProductIngredientId = 8, ProductId = 2, IngredientId = 11 }, // Chicken
+     new ProductIngredient { ProductIngredientId = 9, ProductId = 2, IngredientId = 1 }, // Rice
+     new ProductIngredient { ProductIngredientId = 10, ProductId = 2, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 11, ProductId = 2, IngredientId = 22 }, // Lemon Juice
 
-    new ProductIngredient { ProductId = 3, IngredientId = 15 }, // Bamia
-    new ProductIngredient { ProductId = 3, IngredientId = 10 }, // Beef
-    new ProductIngredient { ProductId = 3, IngredientId = 4 }, // Tomato Sauce
-    new ProductIngredient { ProductId = 3, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 3, IngredientId = 8 }, // Cumin
+     new ProductIngredient { ProductIngredientId = 12, ProductId = 3, IngredientId = 15 }, // Bamia
+     new ProductIngredient { ProductIngredientId = 13, ProductId = 3, IngredientId = 10 }, // Beef
+     new ProductIngredient { ProductIngredientId = 14, ProductId = 3, IngredientId = 4 }, // Tomato Sauce
+     new ProductIngredient { ProductIngredientId = 15, ProductId = 3, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 16, ProductId = 3, IngredientId = 8 }, // Cumin
 
-    new ProductIngredient { ProductId = 4, IngredientId = 1 }, // Rice
-    new ProductIngredient { ProductId = 4, IngredientId = 10 }, // Beef
-    new ProductIngredient { ProductId = 4, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 4, IngredientId = 4 }, // Tomato Sauce
+     new ProductIngredient { ProductIngredientId = 17, ProductId = 4, IngredientId = 1 }, // Rice
+     new ProductIngredient { ProductIngredientId = 18, ProductId = 4, IngredientId = 10 }, // Beef
+     new ProductIngredient { ProductIngredientId = 19, ProductId = 4, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 20, ProductId = 4, IngredientId = 4 }, // Tomato Sauce
 
-    new ProductIngredient { ProductId = 5, IngredientId = 20 }, // Ful
-    new ProductIngredient { ProductId = 5, IngredientId = 8 }, // Cumin
-    new ProductIngredient { ProductId = 5, IngredientId = 22 }, // Lemon Juice
-    new ProductIngredient { ProductId = 5, IngredientId = 23 }, // Olive Oil
+     new ProductIngredient { ProductIngredientId = 21, ProductId = 5, IngredientId = 20 }, // Ful
+     new ProductIngredient { ProductIngredientId = 22, ProductId = 5, IngredientId = 8 }, // Cumin
+     new ProductIngredient { ProductIngredientId = 23, ProductId = 5, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 24, ProductId = 5, IngredientId = 23 }, // Olive Oil
 
-    // 🍖 Grilled
-    new ProductIngredient { ProductId = 6, IngredientId = 10 }, // Beef
-    new ProductIngredient { ProductId = 6, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 6, IngredientId = 8 }, // Cumin
-    new ProductIngredient { ProductId = 6, IngredientId = 9 }, // Coriander
+     // 🍖 Grilled
+     new ProductIngredient { ProductIngredientId = 25, ProductId = 6, IngredientId = 10 }, // Beef
+     new ProductIngredient { ProductIngredientId = 26, ProductId = 6, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 27, ProductId = 6, IngredientId = 8 }, // Cumin
+     new ProductIngredient { ProductIngredientId = 28, ProductId = 6, IngredientId = 9 }, // Coriander
 
-    new ProductIngredient { ProductId = 7, IngredientId = 11 }, // Chicken
-    new ProductIngredient { ProductId = 7, IngredientId = 18 }, // Tahina
-    new ProductIngredient { ProductId = 7, IngredientId = 21 }, // Parsley
-    new ProductIngredient { ProductId = 7, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 29, ProductId = 7, IngredientId = 11 }, // Chicken
+     new ProductIngredient { ProductIngredientId = 30, ProductId = 7, IngredientId = 18 }, // Tahina
+     new ProductIngredient { ProductIngredientId = 31, ProductId = 7, IngredientId = 21 }, // Parsley
+     new ProductIngredient { ProductIngredientId = 32, ProductId = 7, IngredientId = 22 }, // Lemon Juice
 
-    new ProductIngredient { ProductId = 8, IngredientId = 12 }, // Kebda
-    new ProductIngredient { ProductId = 8, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 8, IngredientId = 7 }, // Chili Pepper
+     new ProductIngredient { ProductIngredientId = 33, ProductId = 8, IngredientId = 12 }, // Kebda
+     new ProductIngredient { ProductIngredientId = 34, ProductId = 8, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 35, ProductId = 8, IngredientId = 7 }, // Chili Pepper
 
-    new ProductIngredient { ProductId = 9, IngredientId = 13 }, // Sogo2
-    new ProductIngredient { ProductId = 9, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 9, IngredientId = 7 }, // Chili Pepper
-    new ProductIngredient { ProductId = 9, IngredientId = 8 }, // Cumin
+     new ProductIngredient { ProductIngredientId = 36, ProductId = 9, IngredientId = 13 }, // Sogo2
+     new ProductIngredient { ProductIngredientId = 37, ProductId = 9, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 38, ProductId = 9, IngredientId = 7 }, // Chili Pepper
+     new ProductIngredient { ProductIngredientId = 39, ProductId = 9, IngredientId = 8 }, // Cumin
 
-    // 🐟 Seafood
-    new ProductIngredient { ProductId = 10, IngredientId = 16 }, // Fish Fillet
-    new ProductIngredient { ProductId = 10, IngredientId = 18 }, // Tahina
-    new ProductIngredient { ProductId = 10, IngredientId = 22 }, // Lemon Juice
-    new ProductIngredient { ProductId = 10, IngredientId = 23 }, // Olive Oil
+     // 🐟 Seafood
+     new ProductIngredient { ProductIngredientId = 40, ProductId = 10, IngredientId = 16 }, // Fish Fillet
+     new ProductIngredient { ProductIngredientId = 41, ProductId = 10, IngredientId = 18 }, // Tahina
+     new ProductIngredient { ProductIngredientId = 42, ProductId = 10, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 43, ProductId = 10, IngredientId = 23 }, // Olive Oil
 
-    new ProductIngredient { ProductId = 11, IngredientId = 17 }, // Shrimp
-    new ProductIngredient { ProductId = 11, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 11, IngredientId = 22 }, // Lemon Juice
-    new ProductIngredient { ProductId = 11, IngredientId = 23 }, // Olive Oil
+     new ProductIngredient { ProductIngredientId = 44, ProductId = 11, IngredientId = 17 }, // Shrimp
+     new ProductIngredient { ProductIngredientId = 45, ProductId = 11, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 46, ProductId = 11, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 47, ProductId = 11, IngredientId = 23 }, // Olive Oil
 
-    new ProductIngredient { ProductId = 12, IngredientId = 16 }, // Fish Fillet
-    new ProductIngredient { ProductId = 12, IngredientId = 17 }, // Shrimp
-    new ProductIngredient { ProductId = 12, IngredientId = 1 }, // Rice
-    new ProductIngredient { ProductId = 12, IngredientId = 21 }, // Parsley
-    new ProductIngredient { ProductId = 12, IngredientId = 23 }, // Olive Oil
+     new ProductIngredient { ProductIngredientId = 48, ProductId = 12, IngredientId = 16 }, // Fish Fillet
+     new ProductIngredient { ProductIngredientId = 49, ProductId = 12, IngredientId = 17 }, // Shrimp
+     new ProductIngredient { ProductIngredientId = 50, ProductId = 12, IngredientId = 1 }, // Rice
+     new ProductIngredient { ProductIngredientId = 51, ProductId = 12, IngredientId = 21 }, // Parsley
+     new ProductIngredient { ProductIngredientId = 52, ProductId = 12, IngredientId = 23 }, // Olive Oil
 
-    // 🥪 Sandwiches
-    new ProductIngredient { ProductId = 13, IngredientId = 12 }, // Kebda
-    new ProductIngredient { ProductId = 13, IngredientId = 18 }, // Tahina
-    new ProductIngredient { ProductId = 13, IngredientId = 7 }, // Chili Pepper
+     // 🥪 Sandwiches
+     new ProductIngredient { ProductIngredientId = 53, ProductId = 13, IngredientId = 12 }, // Kebda
+     new ProductIngredient { ProductIngredientId = 54, ProductId = 13, IngredientId = 18 }, // Tahina
+     new ProductIngredient { ProductIngredientId = 55, ProductId = 13, IngredientId = 7 }, // Chili Pepper
 
-    new ProductIngredient { ProductId = 14, IngredientId = 13 }, // Sogo2
-    new ProductIngredient { ProductId = 14, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 14, IngredientId = 7 }, // Chili Pepper
+     new ProductIngredient { ProductIngredientId = 56, ProductId = 14, IngredientId = 13 }, // Sogo2
+     new ProductIngredient { ProductIngredientId = 57, ProductId = 14, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 58, ProductId = 14, IngredientId = 7 }, // Chili Pepper
 
-    new ProductIngredient { ProductId = 15, IngredientId = 10 }, // Beef
-    new ProductIngredient { ProductId = 15, IngredientId = 11 }, // Chicken
-    new ProductIngredient { ProductId = 15, IngredientId = 6 }, // Garlic
-    new ProductIngredient { ProductId = 15, IngredientId = 18 }, // Tahina
+     new ProductIngredient { ProductIngredientId = 59, ProductId = 15, IngredientId = 10 }, // Beef
+     new ProductIngredient { ProductIngredientId = 60, ProductId = 15, IngredientId = 11 }, // Chicken
+     new ProductIngredient { ProductIngredientId = 61, ProductId = 15, IngredientId = 6 }, // Garlic
+     new ProductIngredient { ProductIngredientId = 62, ProductId = 15, IngredientId = 18 }, // Tahina
 
-    new ProductIngredient { ProductId = 16, IngredientId = 19 }, // Chickpeas
-    new ProductIngredient { ProductId = 16, IngredientId = 18 }, // Tahina
-    new ProductIngredient { ProductId = 16, IngredientId = 21 }, // Parsley
+     new ProductIngredient { ProductIngredientId = 63, ProductId = 16, IngredientId = 19 }, // Chickpeas
+     new ProductIngredient { ProductIngredientId = 64, ProductId = 16, IngredientId = 18 }, // Tahina
+     new ProductIngredient { ProductIngredientId = 65, ProductId = 16, IngredientId = 21 }, // Parsley
 
-    // 🥗 Salads
-    new ProductIngredient { ProductId = 17, IngredientId = 18 }, // Tahina
-    new ProductIngredient { ProductId = 17, IngredientId = 22 }, // Lemon Juice
-    new ProductIngredient { ProductId = 17, IngredientId = 6 }, // Garlic
+     // 🥗 Salads
+     new ProductIngredient { ProductIngredientId = 66, ProductId = 17, IngredientId = 18 }, // Tahina
+     new ProductIngredient { ProductIngredientId = 67, ProductId = 17, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 68, ProductId = 17, IngredientId = 6 }, // Garlic
 
-    new ProductIngredient { ProductId = 18, IngredientId = 21 }, // Parsley
-    new ProductIngredient { ProductId = 18, IngredientId = 23 }, // Olive Oil
-    new ProductIngredient { ProductId = 18, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 69, ProductId = 18, IngredientId = 21 }, // Parsley
+     new ProductIngredient { ProductIngredientId = 70, ProductId = 18, IngredientId = 23 }, // Olive Oil
+     new ProductIngredient { ProductIngredientId = 71, ProductId = 18, IngredientId = 22 }, // Lemon Juice
 
-    new ProductIngredient { ProductId = 19, IngredientId = 19 }, // Chickpeas
-    new ProductIngredient { ProductId = 19, IngredientId = 21 }, // Parsley
-    new ProductIngredient { ProductId = 19, IngredientId = 23 }, // Olive Oil
-    new ProductIngredient { ProductId = 19, IngredientId = 22 }, // Lemon Juice
+     new ProductIngredient { ProductIngredientId = 72, ProductId = 19, IngredientId = 19 }, // Chickpeas
+     new ProductIngredient { ProductIngredientId = 73, ProductId = 19, IngredientId = 21 }, // Parsley
+     new ProductIngredient { ProductIngredientId = 74, ProductId = 19, IngredientId = 23 }, // Olive Oil
+     new ProductIngredient { ProductIngredientId = 75, ProductId = 19, IngredientId = 22 }, // Lemon Juice
 
-    // 🍹 Drinks
-    new ProductIngredient { ProductId = 20, IngredientId = 31 }, // Tea Leaves
-    new ProductIngredient { ProductId = 20, IngredientId = 30 }, // Mint Leaves
+     // 🍹 Drinks
+     new ProductIngredient { ProductIngredientId = 76, ProductId = 20, IngredientId = 31 }, // Tea Leaves
+     new ProductIngredient { ProductIngredientId = 77, ProductId = 20, IngredientId = 30 }, // Mint Leaves
 
-    new ProductIngredient { ProductId = 21, IngredientId = 32 }, // Coffee Beans
+     new ProductIngredient { ProductIngredientId = 78, ProductId = 21, IngredientId = 32 }, // Coffee Beans
 
-    new ProductIngredient { ProductId = 22, IngredientId = 33 }, // Mango
-    new ProductIngredient { ProductId = 22, IngredientId = 26 }, // Milk
-    new ProductIngredient { ProductId = 22, IngredientId = 29 }, // Honey or Syrup
+     new ProductIngredient { ProductIngredientId = 79, ProductId = 22, IngredientId = 33 }, // Mango
+     new ProductIngredient { ProductIngredientId = 80, ProductId = 22, IngredientId = 26 }, // Milk
+     new ProductIngredient { ProductIngredientId = 81, ProductId = 22, IngredientId = 29 }, // Honey or Syrup
 
-    new ProductIngredient { ProductId = 23, IngredientId = 34 }, // Guava
-    new ProductIngredient { ProductId = 23, IngredientId = 26 }, // Milk
+     new ProductIngredient { ProductIngredientId = 82, ProductId = 23, IngredientId = 34 }, // Guava
+     new ProductIngredient { ProductIngredientId = 83, ProductId = 23, IngredientId = 26 }, // Milk
 
-    new ProductIngredient { ProductId = 24, IngredientId = 35 }, // Strawberry
-    new ProductIngredient { ProductId = 24, IngredientId = 26 }, // Milk
-    new ProductIngredient { ProductId = 24, IngredientId = 29 }, // Honey or Syrup
+     new ProductIngredient { ProductIngredientId = 84, ProductId = 24, IngredientId = 35 }, // Strawberry
+     new ProductIngredient { ProductIngredientId = 85, ProductId = 24, IngredientId = 26 }, // Milk
+     new ProductIngredient { ProductIngredientId = 86, ProductId = 24, IngredientId = 29 }, // Honey or Syrup
 
-    // 🍰 Desserts
-    new ProductIngredient { ProductId = 25, IngredientId = 24 }, // Flour
-    new ProductIngredient { ProductId = 25, IngredientId = 25 }, // Sugar
-    new ProductIngredient { ProductId = 25, IngredientId = 29 }, // Honey or Syrup
-    new ProductIngredient { ProductId = 25, IngredientId = 27 }, // Nuts
+     // 🍰 Desserts
+     new ProductIngredient { ProductIngredientId = 87, ProductId = 25, IngredientId = 24 }, // Flour
+     new ProductIngredient { ProductIngredientId = 88, ProductId = 25, IngredientId = 25 }, // Sugar
+     new ProductIngredient { ProductIngredientId = 89, ProductId = 25, IngredientId = 29 }, // Honey or Syrup
+     new ProductIngredient { ProductIngredientId = 90, ProductId = 25, IngredientId = 27 }, // Nuts
 
-    new ProductIngredient { ProductId = 26, IngredientId = 24 }, // Flour
-    new ProductIngredient { ProductId = 26, IngredientId = 27 }, // Nuts
-    new ProductIngredient { ProductId = 26, IngredientId = 29 }, // Honey or Syrup
-    new ProductIngredient { ProductId = 26, IngredientId = 28 }, // Butter or Ghee
+     new ProductIngredient { ProductIngredientId = 91, ProductId = 26, IngredientId = 24 }, // Flour
+     new ProductIngredient { ProductIngredientId = 92, ProductId = 26, IngredientId = 27 }, // Nuts
+     new ProductIngredient { ProductIngredientId = 93, ProductId = 26, IngredientId = 29 }, // Honey or Syrup
+     new ProductIngredient { ProductIngredientId = 94, ProductId = 26, IngredientId = 28 }, // Butter or Ghee
 
-    new ProductIngredient { ProductId = 27, IngredientId = 1 }, // Rice
-    new ProductIngredient { ProductId = 27, IngredientId = 26 }, // Milk
-    new ProductIngredient { ProductId = 27, IngredientId = 25 }, // Sugar
+     new ProductIngredient { ProductIngredientId = 95, ProductId = 27, IngredientId = 1 }, // Rice
+     new ProductIngredient { ProductIngredientId = 96, ProductId = 27, IngredientId = 26 }, // Milk
+     new ProductIngredient { ProductIngredientId = 97, ProductId = 27, IngredientId = 25 }, // Sugar
 
-    new ProductIngredient { ProductId = 28, IngredientId = 24 }, // Flour (pastry base)
-    new ProductIngredient { ProductId = 28, IngredientId = 26 }, // Milk
-    new ProductIngredient { ProductId = 28, IngredientId = 27 }, // Nuts
-    new ProductIngredient { ProductId = 28, IngredientId = 28 }  // Butter or Ghee
-);
+     new ProductIngredient { ProductIngredientId = 98, ProductId = 28, IngredientId = 24 }, // Flour (pastry base)
+     new ProductIngredient { ProductIngredientId = 99, ProductId = 28, IngredientId = 26 }, // Milk
+     new ProductIngredient { ProductIngredientId = 100, ProductId = 28, IngredientId = 27 }, // Nuts
+     new ProductIngredient { ProductIngredientId = 101, ProductId = 28, IngredientId = 28 }  // Butter or Ghee
+ );
+
 
 
         }

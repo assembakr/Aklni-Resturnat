@@ -1,0 +1,85 @@
+﻿@model IEnumerable<UserCartItem>
+@{
+    ViewData["Title"] = "Your Cart";
+    double total = Model.Sum(i => i.UnitPrice * i.Quantity);
+}
+
+<section class="cart-section py-5" style="background: linear-gradient(120deg, #fff8f0, #ffe9d6); min-height: 100vh;">
+    <div class="container">
+        <h2 class="fw-bold mb-4 text-gradient">🛒 Your Cart</h2>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info shadow-sm rounded-4 p-4 text-center">
+                <i class="bi bi-cart-x display-5 d-block mb-3 text-secondary"></i>
+                <h5>Your cart is empty</h5>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-theme mt-3 px-4">
+                    <i class="bi bi-arrow-left"></i> Back to Products
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive shadow rounded-4 bg-white p-4">
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name"
+                                             class="rounded-3 me-3"
+                                             style="width: 60px; height: 60px; object-fit: cover;" />
+                                        <span class="fw-semibold">@item.Product?.Name</span>
+                                    </div>
+                                </td>
+                                <td class="text-center">@item.Quantity</td>
+                                <td class="text-end">@item.UnitPrice.ToString("C")</td>
+                                <td class="text-end">@((item.UnitPrice * item.Quantity).ToString("C"))</td>
+                                <td class="text-end">
+                                    <form asp-action="Remove" method="post">
+                                        <input type="hidden" name="productId" value="@item.ProductId" />
+                                        <button type="submit" class="btn btn-outline-danger btn-sm px-3">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <h4 class="fw-bold text-gradient">Total: @total.ToString("C")</h4>
+
+                    <div>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-theme-secondary px-4 me-2">
+                            <i class="bi bi-arrow-left"></i> Continue Shopping
+                        </a>
+                        <a asp-action="Checkout" asp-controller="Order" class="btn btn-theme px-4">
+                            <i class="bi bi-credit-card"></i> Checkout
+                        </a>
+                        <a asp-action="Clear" class="btn btn-outline-danger px-4">
+                            <i class="bi bi-x-circle"></i> Clear Cart
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+}

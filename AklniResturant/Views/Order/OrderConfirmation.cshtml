@@ -1,0 +1,40 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="container mt-5 text-center">
+    <h2 class="text-success mb-3">Order Placed Successfully!</h2>
+    <p>Your order number is <strong>#@Model.OrderId</strong></p>
+    <p>Date: @Model.OrderDate.ToString("f")</p>
+    <p>Total Amount: <strong>@Model.TotalAmount.ToString("C")</strong></p>
+
+    <hr />
+
+    <h4>Order Details</h4>
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrdersItems)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitPrice.ToString("C")</td>
+                    <td>@(item.Quantity* item.UnitPrice).ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">Back to Home</a>
+</div>

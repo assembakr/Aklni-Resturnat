@@ -4,16 +4,19 @@ using AklniResturant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AklniResturant.Data.Migrations
+namespace AklniResturant.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251101101655_addcartitems")]
+    partial class addcartitems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -311,8 +314,8 @@ namespace AklniResturant.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("OrderItemId");
 
@@ -641,523 +644,632 @@ namespace AklniResturant.Data.Migrations
 
             modelBuilder.Entity("AklniResturant.Models.ProductIngredient", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductIngredientId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductIngredientId"));
 
                     b.Property<int>("IngredientId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId", "IngredientId");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductIngredientId");
 
                     b.HasIndex("IngredientId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProdIngredients");
 
                     b.HasData(
                         new
                         {
-                            ProductId = 1,
-                            IngredientId = 1
+                            ProductIngredientId = 1,
+                            IngredientId = 1,
+                            ProductId = 1
                         },
                         new
                         {
-                            ProductId = 1,
-                            IngredientId = 2
+                            ProductIngredientId = 2,
+                            IngredientId = 2,
+                            ProductId = 1
                         },
                         new
                         {
-                            ProductId = 1,
-                            IngredientId = 3
+                            ProductIngredientId = 3,
+                            IngredientId = 3,
+                            ProductId = 1
                         },
                         new
                         {
-                            ProductId = 1,
-                            IngredientId = 4
+                            ProductIngredientId = 4,
+                            IngredientId = 4,
+                            ProductId = 1
                         },
                         new
                         {
-                            ProductId = 1,
-                            IngredientId = 5
+                            ProductIngredientId = 5,
+                            IngredientId = 5,
+                            ProductId = 1
                         },
                         new
                         {
-                            ProductId = 1,
-                            IngredientId = 8
+                            ProductIngredientId = 6,
+                            IngredientId = 8,
+                            ProductId = 1
                         },
                         new
                         {
-                            ProductId = 2,
-                            IngredientId = 14
+                            ProductIngredientId = 7,
+                            IngredientId = 14,
+                            ProductId = 2
                         },
                         new
                         {
-                            ProductId = 2,
-                            IngredientId = 11
+                            ProductIngredientId = 8,
+                            IngredientId = 11,
+                            ProductId = 2
                         },
                         new
                         {
-                            ProductId = 2,
-                            IngredientId = 1
+                            ProductIngredientId = 9,
+                            IngredientId = 1,
+                            ProductId = 2
                         },
                         new
                         {
-                            ProductId = 2,
-                            IngredientId = 6
+                            ProductIngredientId = 10,
+                            IngredientId = 6,
+                            ProductId = 2
                         },
                         new
                         {
-                            ProductId = 2,
-                            IngredientId = 22
+                            ProductIngredientId = 11,
+                            IngredientId = 22,
+                            ProductId = 2
                         },
                         new
                         {
-                            ProductId = 3,
-                            IngredientId = 15
+                            ProductIngredientId = 12,
+                            IngredientId = 15,
+                            ProductId = 3
                         },
                         new
                         {
-                            ProductId = 3,
-                            IngredientId = 10
+                            ProductIngredientId = 13,
+                            IngredientId = 10,
+                            ProductId = 3
                         },
                         new
                         {
-                            ProductId = 3,
-                            IngredientId = 4
+                            ProductIngredientId = 14,
+                            IngredientId = 4,
+                            ProductId = 3
                         },
                         new
                         {
-                            ProductId = 3,
-                            IngredientId = 6
+                            ProductIngredientId = 15,
+                            IngredientId = 6,
+                            ProductId = 3
                         },
                         new
                         {
-                            ProductId = 3,
-                            IngredientId = 8
+                            ProductIngredientId = 16,
+                            IngredientId = 8,
+                            ProductId = 3
                         },
                         new
                         {
-                            ProductId = 4,
-                            IngredientId = 1
+                            ProductIngredientId = 17,
+                            IngredientId = 1,
+                            ProductId = 4
                         },
                         new
                         {
-                            ProductId = 4,
-                            IngredientId = 10
+                            ProductIngredientId = 18,
+                            IngredientId = 10,
+                            ProductId = 4
                         },
                         new
                         {
-                            ProductId = 4,
-                            IngredientId = 6
+                            ProductIngredientId = 19,
+                            IngredientId = 6,
+                            ProductId = 4
                         },
                         new
                         {
-                            ProductId = 4,
-                            IngredientId = 4
+                            ProductIngredientId = 20,
+                            IngredientId = 4,
+                            ProductId = 4
                         },
                         new
                         {
-                            ProductId = 5,
-                            IngredientId = 20
+                            ProductIngredientId = 21,
+                            IngredientId = 20,
+                            ProductId = 5
                         },
                         new
                         {
-                            ProductId = 5,
-                            IngredientId = 8
+                            ProductIngredientId = 22,
+                            IngredientId = 8,
+                            ProductId = 5
                         },
                         new
                         {
-                            ProductId = 5,
-                            IngredientId = 22
+                            ProductIngredientId = 23,
+                            IngredientId = 22,
+                            ProductId = 5
                         },
                         new
                         {
-                            ProductId = 5,
-                            IngredientId = 23
+                            ProductIngredientId = 24,
+                            IngredientId = 23,
+                            ProductId = 5
                         },
                         new
                         {
-                            ProductId = 6,
-                            IngredientId = 10
+                            ProductIngredientId = 25,
+                            IngredientId = 10,
+                            ProductId = 6
                         },
                         new
                         {
-                            ProductId = 6,
-                            IngredientId = 6
+                            ProductIngredientId = 26,
+                            IngredientId = 6,
+                            ProductId = 6
                         },
                         new
                         {
-                            ProductId = 6,
-                            IngredientId = 8
+                            ProductIngredientId = 27,
+                            IngredientId = 8,
+                            ProductId = 6
                         },
                         new
                         {
-                            ProductId = 6,
-                            IngredientId = 9
+                            ProductIngredientId = 28,
+                            IngredientId = 9,
+                            ProductId = 6
                         },
                         new
                         {
-                            ProductId = 7,
-                            IngredientId = 11
+                            ProductIngredientId = 29,
+                            IngredientId = 11,
+                            ProductId = 7
                         },
                         new
                         {
-                            ProductId = 7,
-                            IngredientId = 18
+                            ProductIngredientId = 30,
+                            IngredientId = 18,
+                            ProductId = 7
                         },
                         new
                         {
-                            ProductId = 7,
-                            IngredientId = 21
+                            ProductIngredientId = 31,
+                            IngredientId = 21,
+                            ProductId = 7
                         },
                         new
                         {
-                            ProductId = 7,
-                            IngredientId = 22
+                            ProductIngredientId = 32,
+                            IngredientId = 22,
+                            ProductId = 7
                         },
                         new
                         {
-                            ProductId = 8,
-                            IngredientId = 12
+                            ProductIngredientId = 33,
+                            IngredientId = 12,
+                            ProductId = 8
                         },
                         new
                         {
-                            ProductId = 8,
-                            IngredientId = 6
+                            ProductIngredientId = 34,
+                            IngredientId = 6,
+                            ProductId = 8
                         },
                         new
                         {
-                            ProductId = 8,
-                            IngredientId = 7
+                            ProductIngredientId = 35,
+                            IngredientId = 7,
+                            ProductId = 8
                         },
                         new
                         {
-                            ProductId = 9,
-                            IngredientId = 13
+                            ProductIngredientId = 36,
+                            IngredientId = 13,
+                            ProductId = 9
                         },
                         new
                         {
-                            ProductId = 9,
-                            IngredientId = 6
+                            ProductIngredientId = 37,
+                            IngredientId = 6,
+                            ProductId = 9
                         },
                         new
                         {
-                            ProductId = 9,
-                            IngredientId = 7
+                            ProductIngredientId = 38,
+                            IngredientId = 7,
+                            ProductId = 9
                         },
                         new
                         {
-                            ProductId = 9,
-                            IngredientId = 8
+                            ProductIngredientId = 39,
+                            IngredientId = 8,
+                            ProductId = 9
                         },
                         new
                         {
-                            ProductId = 10,
-                            IngredientId = 16
+                            ProductIngredientId = 40,
+                            IngredientId = 16,
+                            ProductId = 10
                         },
                         new
                         {
-                            ProductId = 10,
-                            IngredientId = 18
+                            ProductIngredientId = 41,
+                            IngredientId = 18,
+                            ProductId = 10
                         },
                         new
                         {
-                            ProductId = 10,
-                            IngredientId = 22
+                            ProductIngredientId = 42,
+                            IngredientId = 22,
+                            ProductId = 10
                         },
                         new
                         {
-                            ProductId = 10,
-                            IngredientId = 23
+                            ProductIngredientId = 43,
+                            IngredientId = 23,
+                            ProductId = 10
                         },
                         new
                         {
-                            ProductId = 11,
-                            IngredientId = 17
+                            ProductIngredientId = 44,
+                            IngredientId = 17,
+                            ProductId = 11
                         },
                         new
                         {
-                            ProductId = 11,
-                            IngredientId = 6
+                            ProductIngredientId = 45,
+                            IngredientId = 6,
+                            ProductId = 11
                         },
                         new
                         {
-                            ProductId = 11,
-                            IngredientId = 22
+                            ProductIngredientId = 46,
+                            IngredientId = 22,
+                            ProductId = 11
                         },
                         new
                         {
-                            ProductId = 11,
-                            IngredientId = 23
+                            ProductIngredientId = 47,
+                            IngredientId = 23,
+                            ProductId = 11
                         },
                         new
                         {
-                            ProductId = 12,
-                            IngredientId = 16
+                            ProductIngredientId = 48,
+                            IngredientId = 16,
+                            ProductId = 12
                         },
                         new
                         {
-                            ProductId = 12,
-                            IngredientId = 17
+                            ProductIngredientId = 49,
+                            IngredientId = 17,
+                            ProductId = 12
                         },
                         new
                         {
-                            ProductId = 12,
-                            IngredientId = 1
+                            ProductIngredientId = 50,
+                            IngredientId = 1,
+                            ProductId = 12
                         },
                         new
                         {
-                            ProductId = 12,
-                            IngredientId = 21
+                            ProductIngredientId = 51,
+                            IngredientId = 21,
+                            ProductId = 12
                         },
                         new
                         {
-                            ProductId = 12,
-                            IngredientId = 23
+                            ProductIngredientId = 52,
+                            IngredientId = 23,
+                            ProductId = 12
                         },
                         new
                         {
-                            ProductId = 13,
-                            IngredientId = 12
+                            ProductIngredientId = 53,
+                            IngredientId = 12,
+                            ProductId = 13
                         },
                         new
                         {
-                            ProductId = 13,
-                            IngredientId = 18
+                            ProductIngredientId = 54,
+                            IngredientId = 18,
+                            ProductId = 13
                         },
                         new
                         {
-                            ProductId = 13,
-                            IngredientId = 7
+                            ProductIngredientId = 55,
+                            IngredientId = 7,
+                            ProductId = 13
                         },
                         new
                         {
-                            ProductId = 14,
-                            IngredientId = 13
+                            ProductIngredientId = 56,
+                            IngredientId = 13,
+                            ProductId = 14
                         },
                         new
                         {
-                            ProductId = 14,
-                            IngredientId = 6
+                            ProductIngredientId = 57,
+                            IngredientId = 6,
+                            ProductId = 14
                         },
                         new
                         {
-                            ProductId = 14,
-                            IngredientId = 7
+                            ProductIngredientId = 58,
+                            IngredientId = 7,
+                            ProductId = 14
                         },
                         new
                         {
-                            ProductId = 15,
-                            IngredientId = 10
+                            ProductIngredientId = 59,
+                            IngredientId = 10,
+                            ProductId = 15
                         },
                         new
                         {
-                            ProductId = 15,
-                            IngredientId = 11
+                            ProductIngredientId = 60,
+                            IngredientId = 11,
+                            ProductId = 15
                         },
                         new
                         {
-                            ProductId = 15,
-                            IngredientId = 6
+                            ProductIngredientId = 61,
+                            IngredientId = 6,
+                            ProductId = 15
                         },
                         new
                         {
-                            ProductId = 15,
-                            IngredientId = 18
+                            ProductIngredientId = 62,
+                            IngredientId = 18,
+                            ProductId = 15
                         },
                         new
                         {
-                            ProductId = 16,
-                            IngredientId = 19
+                            ProductIngredientId = 63,
+                            IngredientId = 19,
+                            ProductId = 16
                         },
                         new
                         {
-                            ProductId = 16,
-                            IngredientId = 18
+                            ProductIngredientId = 64,
+                            IngredientId = 18,
+                            ProductId = 16
                         },
                         new
                         {
-                            ProductId = 16,
-                            IngredientId = 21
+                            ProductIngredientId = 65,
+                            IngredientId = 21,
+                            ProductId = 16
                         },
                         new
                         {
-                            ProductId = 17,
-                            IngredientId = 18
+                            ProductIngredientId = 66,
+                            IngredientId = 18,
+                            ProductId = 17
                         },
                         new
                         {
-                            ProductId = 17,
-                            IngredientId = 22
+                            ProductIngredientId = 67,
+                            IngredientId = 22,
+                            ProductId = 17
                         },
                         new
                         {
-                            ProductId = 17,
-                            IngredientId = 6
+                            ProductIngredientId = 68,
+                            IngredientId = 6,
+                            ProductId = 17
                         },
                         new
                         {
-                            ProductId = 18,
-                            IngredientId = 21
+                            ProductIngredientId = 69,
+                            IngredientId = 21,
+                            ProductId = 18
                         },
                         new
                         {
-                            ProductId = 18,
-                            IngredientId = 23
+                            ProductIngredientId = 70,
+                            IngredientId = 23,
+                            ProductId = 18
                         },
                         new
                         {
-                            ProductId = 18,
-                            IngredientId = 22
+                            ProductIngredientId = 71,
+                            IngredientId = 22,
+                            ProductId = 18
                         },
                         new
                         {
-                            ProductId = 19,
-                            IngredientId = 19
+                            ProductIngredientId = 72,
+                            IngredientId = 19,
+                            ProductId = 19
                         },
                         new
                         {
-                            ProductId = 19,
-                            IngredientId = 21
+                            ProductIngredientId = 73,
+                            IngredientId = 21,
+                            ProductId = 19
                         },
                         new
                         {
-                            ProductId = 19,
-                            IngredientId = 23
+                            ProductIngredientId = 74,
+                            IngredientId = 23,
+                            ProductId = 19
                         },
                         new
                         {
-                            ProductId = 19,
-                            IngredientId = 22
+                            ProductIngredientId = 75,
+                            IngredientId = 22,
+                            ProductId = 19
                         },
                         new
                         {
-                            ProductId = 20,
-                            IngredientId = 31
+                            ProductIngredientId = 76,
+                            IngredientId = 31,
+                            ProductId = 20
                         },
                         new
                         {
-                            ProductId = 20,
-                            IngredientId = 30
+                            ProductIngredientId = 77,
+                            IngredientId = 30,
+                            ProductId = 20
                         },
                         new
                         {
-                            ProductId = 21,
-                            IngredientId = 32
+                            ProductIngredientId = 78,
+                            IngredientId = 32,
+                            ProductId = 21
                         },
                         new
                         {
-                            ProductId = 22,
-                            IngredientId = 33
+                            ProductIngredientId = 79,
+                            IngredientId = 33,
+                            ProductId = 22
                         },
                         new
                         {
-                            ProductId = 22,
-                            IngredientId = 26
+                            ProductIngredientId = 80,
+                            IngredientId = 26,
+                            ProductId = 22
                         },
                         new
                         {
-                            ProductId = 22,
-                            IngredientId = 29
+                            ProductIngredientId = 81,
+                            IngredientId = 29,
+                            ProductId = 22
                         },
                         new
                         {
-                            ProductId = 23,
-                            IngredientId = 34
+                            ProductIngredientId = 82,
+                            IngredientId = 34,
+                            ProductId = 23
                         },
                         new
                         {
-                            ProductId = 23,
-                            IngredientId = 26
+                            ProductIngredientId = 83,
+                            IngredientId = 26,
+                            ProductId = 23
                         },
                         new
                         {
-                            ProductId = 24,
-                            IngredientId = 35
+                            ProductIngredientId = 84,
+                            IngredientId = 35,
+                            ProductId = 24
                         },
                         new
                         {
-                            ProductId = 24,
-                            IngredientId = 26
+                            ProductIngredientId = 85,
+                            IngredientId = 26,
+                            ProductId = 24
                         },
                         new
                         {
-                            ProductId = 24,
-                            IngredientId = 29
+                            ProductIngredientId = 86,
+                            IngredientId = 29,
+                            ProductId = 24
                         },
                         new
                         {
-                            ProductId = 25,
-                            IngredientId = 24
+                            ProductIngredientId = 87,
+                            IngredientId = 24,
+                            ProductId = 25
                         },
                         new
                         {
-                            ProductId = 25,
-                            IngredientId = 25
+                            ProductIngredientId = 88,
+                            IngredientId = 25,
+                            ProductId = 25
                         },
                         new
                         {
-                            ProductId = 25,
-                            IngredientId = 29
+                            ProductIngredientId = 89,
+                            IngredientId = 29,
+                            ProductId = 25
                         },
                         new
                         {
-                            ProductId = 25,
-                            IngredientId = 27
+                            ProductIngredientId = 90,
+                            IngredientId = 27,
+                            ProductId = 25
                         },
                         new
                         {
-                            ProductId = 26,
-                            IngredientId = 24
+                            ProductIngredientId = 91,
+                            IngredientId = 24,
+                            ProductId = 26
                         },
                         new
                         {
-                            ProductId = 26,
-                            IngredientId = 27
+                            ProductIngredientId = 92,
+                            IngredientId = 27,
+                            ProductId = 26
                         },
                         new
                         {
-                            ProductId = 26,
-                            IngredientId = 29
+                            ProductIngredientId = 93,
+                            IngredientId = 29,
+                            ProductId = 26
                         },
                         new
                         {
-                            ProductId = 26,
-                            IngredientId = 28
+                            ProductIngredientId = 94,
+                            IngredientId = 28,
+                            ProductId = 26
                         },
                         new
                         {
-                            ProductId = 27,
-                            IngredientId = 1
+                            ProductIngredientId = 95,
+                            IngredientId = 1,
+                            ProductId = 27
                         },
                         new
                         {
-                            ProductId = 27,
-                            IngredientId = 26
+                            ProductIngredientId = 96,
+                            IngredientId = 26,
+                            ProductId = 27
                         },
                         new
                         {
-                            ProductId = 27,
-                            IngredientId = 25
+                            ProductIngredientId = 97,
+                            IngredientId = 25,
+                            ProductId = 27
                         },
                         new
                         {
-                            ProductId = 28,
-                            IngredientId = 24
+                            ProductIngredientId = 98,
+                            IngredientId = 24,
+                            ProductId = 28
                         },
                         new
                         {
-                            ProductId = 28,
-                            IngredientId = 26
+                            ProductIngredientId = 99,
+                            IngredientId = 26,
+                            ProductId = 28
                         },
                         new
                         {
-                            ProductId = 28,
-                            IngredientId = 27
+                            ProductIngredientId = 100,
+                            IngredientId = 27,
+                            ProductId = 28
                         },
                         new
                         {
-                            ProductId = 28,
-                            IngredientId = 28
+                            ProductIngredientId = 101,
+                            IngredientId = 28,
+                            ProductId = 28
                         });
                 });
 
@@ -1224,6 +1336,54 @@ namespace AklniResturant.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("AklniResturant.Models.UserCart", b =>
+                {
+                    b.Property<int>("UserCartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserCartId"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserCartId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCarts");
+                });
+
+            modelBuilder.Entity("AklniResturant.Models.UserCartItem", b =>
+                {
+                    b.Property<int>("UserCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserCartItemId"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("UserCartId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserCartItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserCartId");
+
+                    b.ToTable("UserCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1421,6 +1581,36 @@ namespace AklniResturant.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("AklniResturant.Models.UserCart", b =>
+                {
+                    b.HasOne("AklniResturant.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AklniResturant.Models.UserCartItem", b =>
+                {
+                    b.HasOne("AklniResturant.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AklniResturant.Models.UserCart", "UserCart")
+                        .WithMany("Items")
+                        .HasForeignKey("UserCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("UserCart");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1497,6 +1687,11 @@ namespace AklniResturant.Data.Migrations
             modelBuilder.Entity("AklniResturant.Models.User", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("AklniResturant.Models.UserCart", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

@@ -36,7 +36,7 @@
                             </p>
 
                             <form asp-action="AddToCart" method="post" class="mt-auto">
-                                <input type="hidden" name="id" value="@item.ProductId" />
+                                <input type="hidden" name="productId" value="@item.ProductId" />
                                 <div class="input-group">
                                     <input type="number" name="quantity" class="form-control" 
                                            value="1" min="1" max="@item.Stock" />

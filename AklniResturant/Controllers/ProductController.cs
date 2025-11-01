@@ -130,7 +130,7 @@ namespace AklniResturant.Controllers
                 Categories = await _categories.GetAllAsync(),
                 Ingredients = await _ingredients.GetAllAsync(),
                 Product = new Product()
-            }; 
+            };
             return View(vm);
         }
 
@@ -182,6 +182,78 @@ namespace AklniResturant.Controllers
             vm.Ingredients = (await _ingredients.GetAllAsync()).ToList();
 
             return View(vm);
+        }
+
+
+
+        // delete view to delte product
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var query = new Query<Product> { Includes = "Category" };
+            var prod = await _products.GetByIdAsync(id, query);
+
+            if (prod == null)
+            {
+                return NotFound();
+            }
+
+            return View(prod);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            // get the product 
+            var prod = await _products.GetByIdAsync(id, new Query<Product>());
+            if (prod == null)
+            {
+                return NotFound();
+            }
+
+            var prodIngredients = await _prodIngredients.GetAllAsync();
+            var relatedIngredients = prodIngredients
+                .Where(pi => pi.ProductId == id)
+                .ToList();
+
+
+            foreach (var item in relatedIngredients)
+            {
+                await _prodIngredients.DeleteAsync(item.ProductIngredientId);
+            }
+            await _prodIngredients.SaveChangesAsync();
+
+            // 4 Delete the image file if it exists
+            if (!string.IsNullOrEmpty(prod.ImageUrl))
+            {
+                var imagePath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    prod.ImageUrl.TrimStart('/')
+                );
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            //  Delete the product 
+            await _products.DeleteAsync(id);
+            await _products.SaveChangesAsync();
+
+            //  back to Index
+            return RedirectToAction(nameof(Index));
+        }
+
+        // add to cart view
+        [HttpPost]
+        public IActionResult AddToCart(int productId, int quantity = 1)
+        {
+            return RedirectToAction("AddToCart", "Cart", new { productId, quantity });
         }
 
     }

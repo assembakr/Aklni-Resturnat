@@ -1,4 +1,29 @@
-﻿<!DOCTYPE html>
+﻿@using AklniResturant.Data
+@using AklniResturant.Models
+@using System.Security.Claims
+@using Microsoft.EntityFrameworkCore
+@inject IHttpContextAccessor HttpContextAccessor
+@inject ApplicationDbContext _context
+@{
+    string? userId = HttpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+    int cartCount = 0;
+
+    if (!string.IsNullOrEmpty(userId))
+    {
+        var userCart = _context.UserCarts
+            .Include(c => c.Items)
+            .FirstOrDefault(c => c.UserId == userId);
+        if (userCart != null)
+            cartCount = userCart.Items.Sum(i => i.Quantity);
+    }
+    else
+    {
+        var cart = HttpContextAccessor.HttpContext?.Session.Get<List<OrderItem>>("Cart") ?? new List<OrderItem>();
+        cartCount = cart.Sum(i => i.Quantity);
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,6 +31,7 @@
     <title>@ViewData["Title"] - AklniResturant</title>
     
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AklniResturant.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
@@ -18,13 +44,14 @@
                     <img src="~/assets/images/logo.jpg" alt="Aklni Logo" width="40" height="40" class="me-2 rounded-circle">
                     <span class="text-gradient">Aklni</span>
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item mx-2">
                             <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -40,7 +67,22 @@
                         <li class="nav-item mx-2">
                             <a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
                         </li>
+
+                        <!-- 🛒 Cart Icon -->
+                        <li class="nav-item mx-2 position-relative">
+                            <a class="nav-link" asp-controller="Cart" asp-action="Index" title="View Cart">
+                                <i class="bi bi-cart3 fs-5"></i>
+                                @if (cartCount > 0)
+                                {
+                                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">
+                                        @cartCount
+                                    </span>
+                                }
+                            </a>
+                        </li>
                     </ul>
+
+                    <!-- 🔐 Login/Logout Partial -->
                     <partial name="_LoginPartial" />
                 </div>
             </div>
